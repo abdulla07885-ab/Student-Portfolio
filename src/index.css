@@ -1,75 +1,41 @@
-:root {
-  --primary-color: #3b82f6;
-  --primary-color-hover: #2563eb;
-  --bg-color: #ffffff;
-  --bg-color-alt: #f8fafc;
-  --text-color: #1e293b;
-  --text-color-light: #64748b;
-  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #60a5fa;
-    --primary-color-hover: #93c5fd;
-    --bg-color: #0f172a;
-    --bg-color-alt: #1e293b;
-    --text-color: #f8fafc;
-    --text-color-light: #cbd5e1;
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+  }
+  .glass-chip {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+  }
+  .ambient-mesh {
+    background-image: 
+      radial-gradient(at 15% 15%, rgba(196, 181, 253, 0.28) 0px, transparent 50%),
+      radial-gradient(at 85% 10%, rgba(186, 230, 253, 0.32) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(221, 214, 254, 0.22) 0px, transparent 65%),
+      radial-gradient(at 80% 85%, rgba(216, 180, 254, 0.25) 0px, transparent 55%),
+      radial-gradient(at 10% 90%, rgba(191, 219, 254, 0.3) 0px, transparent 50%);
   }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-body {
-  font-family: var(--font-family);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+::-webkit-scrollbar-track {
+  background: #f1f2f8;
 }
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 9999px;
 }
-
-.btn-primary {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-color-hover);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-}
-
-.btn-secondary:hover {
-  background-color: rgba(59, 130, 246, 0.1);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  .hero h2 {
-    font-size: 1.5rem;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
 }

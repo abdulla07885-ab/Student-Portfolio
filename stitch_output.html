@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alex Chen — Computer Science Student &amp; Aspiring Software Developer</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Forms and Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            },
+            surface: {
+              canvas: '#f8f9fe',
+              card: 'rgba(255, 255, 255, 0.78)',
+              glass: 'rgba(255, 255, 255, 0.65)',
+            }
+          },
+          boxShadow: {
+            'glass': '0 20px 40px -15px rgba(147, 131, 219, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset',
+            'glass-lg': '0 25px 50px -12px rgba(124, 58, 237, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset',
+            'pill': '0 8px 20px -6px rgba(124, 58, 237, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom CSS for Frosted Glass Surfaces and Smooth Gradients -->
+<style data-purpose="custom-glass-effects">
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+    .glass-chip {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+    }
+    .ambient-mesh {
+      background-image: 
+        radial-gradient(at 15% 15%, rgba(196, 181, 253, 0.28) 0px, transparent 50%),
+        radial-gradient(at 85% 10%, rgba(186, 230, 253, 0.32) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(221, 214, 254, 0.22) 0px, transparent 65%),
+        radial-gradient(at 80% 85%, rgba(216, 180, 254, 0.25) 0px, transparent 55%),
+        radial-gradient(at 10% 90%, rgba(191, 219, 254, 0.3) 0px, transparent 50%);
+    }
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f2f8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c4b5fd;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a78bfa;
+    }
+  </style>
+</head>
+<body class="bg-[#f8f9fe] text-slate-800 font-sans antialiased selection:bg-brand-200 selection:text-brand-700 relative overflow-x-hidden min-h-screen ambient-mesh">
+<!-- Ambient background glow spheres -->
+<div aria-hidden="true" class="fixed top-12 left-1/4 w-96 h-96 bg-purple-200/35 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div aria-hidden="true" class="fixed top-96 right-10 w-[30rem] h-[30rem] bg-sky-100/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div aria-hidden="true" class="fixed bottom-20 left-10 w-[28rem] h-[28rem] bg-violet-200/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- BEGIN: Navigation -->
+<nav aria-label="Main Navigation" class="sticky top-5 z-50 px-4 max-w-6xl mx-auto">
+<div class="glass-panel rounded-full px-4 py-2.5 shadow-glass flex items-center justify-between border border-white/80">
+<!-- Brand Monogram -->
+<a class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-full" href="#hero">
+<div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-base shadow-sm group-hover:scale-105 transition-transform duration-200">
+          AC
+        </div>
+<div class="flex flex-col text-left">
+<span class="font-bold text-slate-900 leading-tight text-sm tracking-tight group-hover:text-brand-600 transition-colors">Alex Chen</span>
+<span class="text-[11px] text-slate-500 font-medium">CS Student &amp; Dev</span>
+</div>
+</a>
+<!-- Desktop Nav Items -->
+<div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-600">
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#about">About</a>
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#skills">Skills</a>
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#projects">Projects</a>
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#education">Education</a>
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#experience">Experience</a>
+<a class="px-3.5 py-1.5 rounded-full hover:text-slate-900 hover:bg-white/70 transition" href="#contact">Contact</a>
+</div>
+<!-- Action Button -->
+<div class="flex items-center gap-2">
+<a class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-sm hover:shadow transition-all duration-200 group" href="#contact">
+<span>Let's Connect</span>
+<svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</div>
+</nav>
+<!-- END: Navigation -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-6xl mx-auto px-4 pt-12 pb-24 space-y-24">
+<!-- BEGIN: HeroSection -->
+<section class="relative pt-6 pb-4" id="hero">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left: Introduction & Call to Action -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Pill Eyebrow -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-brand-200/60 shadow-sm text-xs font-semibold tracking-wider uppercase text-brand-600">
+<span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+            HELLO, I'M
+          </div>
+<!-- Main Title -->
+<div class="space-y-2">
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+              Alex Chen
+            </h1>
+<p class="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-brand-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent tracking-tight">
+              Computer Science Student &amp; Aspiring Software Developer
+            </p>
+</div>
+<!-- Description -->
+<p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
+            I craft clean, high-performance software and scalable web platforms. Driven by algorithms, modern system architecture, and an obsession with intuitive digital user experiences.
+          </p>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="inline-flex items-center gap-2.5 bg-slate-900 text-white hover:bg-slate-800 px-6 py-3.5 rounded-full text-sm font-semibold shadow-pill hover:shadow-lg transition-all duration-200 group" href="#projects">
+<span>View My Projects</span>
+<svg class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2.5 bg-white/90 hover:bg-white text-slate-800 border border-slate-200 px-6 py-3.5 rounded-full text-sm font-semibold shadow-sm hover:shadow transition-all duration-200" href="#contact">
+<span>Download Resume</span>
+<svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M7.5 12L12 16.5m0 0L16.5 12M12 16.5V3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+<!-- Campus Tech Affiliations / Badges -->
+<div class="pt-6 border-t border-slate-200/60">
+<p class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Campus Affiliations &amp; Community</p>
+<div class="flex flex-wrap items-center gap-6 text-slate-400 font-medium text-xs sm:text-sm">
+<span class="inline-flex items-center gap-1.5 hover:text-slate-700 transition">
+<svg class="w-4 h-4 text-brand-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 8l-8-4 8-4 8 4-8 4zm0 4l-10-5v6l10 5 10-5v-6l-10 5z"></path></svg>
+                ACM Chapter Leader
+              </span>
+<span class="inline-flex items-center gap-1.5 hover:text-slate-700 transition">
+<svg class="w-4 h-4 text-sky-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+                GitHub Campus Expert
+              </span>
+<span class="inline-flex items-center gap-1.5 hover:text-slate-700 transition">
+<svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"></path></svg>
+                GDSC Lead Developer
+              </span>
+</div>
+</div>
+</div>
+<!-- Right: Modern Frosted Character/Developer Glass Showcase -->
+<div class="lg:col-span-5 relative flex justify-center">
+<!-- Outer Glass Capsule Canvas Frame -->
+<div class="relative w-full max-w-[370px] aspect-[4/5] rounded-[2.5rem] p-3.5 glass-panel shadow-glass-lg border border-white flex flex-col justify-end overflow-hidden">
+<!-- Soft Internal Gradient Pod -->
+<div class="absolute inset-2 rounded-[2rem] bg-gradient-to-b from-purple-100/70 via-indigo-50/50 to-brand-100/80 -z-10 overflow-hidden">
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-300/40 rounded-full blur-2xl"></div>
+<div class="absolute -bottom-10 -left-10 w-48 h-48 bg-sky-200/50 rounded-full blur-2xl"></div>
+</div>
+<!-- Stylized Developer Persona Vector Illustration -->
+<div class="relative w-full h-full flex flex-col items-center justify-center pt-8">
+<!-- Geometric Avatar / Modern Tech Silhouette Illustration -->
+<div class="relative flex flex-col items-center">
+<!-- Glowing Aura -->
+<div class="w-52 h-52 rounded-full bg-gradient-to-tr from-brand-300 to-sky-200 absolute blur-xl opacity-60"></div>
+<!-- Stylized Avatar Shape -->
+<div class="relative w-44 h-44 rounded-full bg-gradient-to-b from-slate-800 to-slate-950 p-1.5 shadow-2xl flex items-center justify-center">
+<div class="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 flex flex-col items-center justify-center overflow-hidden border border-white/20">
+<svg class="w-24 h-24 text-brand-300 drop-shadow-md" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Subtle Status Tag on Avatar -->
+<div class="mt-4 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-brand-100 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="text-xs font-semibold text-slate-800">Junior at TopTech Univ</span>
+</div>
+</div>
+</div>
+<!-- Floating Glass Chip: Top Right (GPA / Honors) -->
+<div class="absolute top-5 right-5 glass-chip px-3.5 py-2.5 rounded-2xl shadow-glass border border-white flex items-center gap-2.5 animate-bounce" style="animation-duration: 4s;">
+<div class="w-8 h-8 rounded-xl bg-brand-500/10 text-brand-600 flex items-center justify-center font-bold text-sm">
+                ★
+              </div>
+<div class="text-left">
+<div class="text-xs font-extrabold text-slate-900">3.92 GPA</div>
+<div class="text-[10px] text-slate-500 font-medium">Dean's Honor List</div>
+</div>
+</div>
+<!-- Floating Glass Chip: Bottom Metric (Code Quality / Commits) -->
+<div class="glass-chip px-4 py-3 rounded-2xl shadow-glass border border-white flex items-center justify-between mb-2">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<p class="text-[11px] text-slate-400 font-medium uppercase tracking-wider">GitHub Activity</p>
+<p class="text-xs font-bold text-slate-900">500+ Commits / 2024</p>
+</div>
+</div>
+<!-- Mini Sparkline SVG -->
+<svg class="w-16 h-7 text-brand-500" fill="none" viewbox="0 0 64 24">
+<path d="M2 18 L14 12 L26 16 L38 6 L50 10 L62 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<!-- Decorative Soft Glass Pearl Orb -->
+<div class="absolute -top-3 -left-3 w-12 h-12 rounded-full bg-white/40 backdrop-blur-xl border border-white/80 shadow-md flex items-center justify-center text-brand-500 text-xs font-black">
+              ✦
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: AboutSection -->
+<section class="space-y-8" id="about">
+<!-- Section Label & Heading -->
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">ABOUT ME</p>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Building with Logic, Designing with Purpose
+        </h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- About Left: Detailed Bio -->
+<div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl shadow-glass space-y-5 border border-white">
+<p class="text-slate-700 leading-relaxed text-base sm:text-lg">
+            I am a third-year Computer Science student passionate about full-stack engineering, distributed systems, and modern developer tooling. I believe that elegant code and thoughtful UI design are not mutually exclusive—they reinforce each other to create transformative tools.
+          </p>
+<p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            When I am not optimizing SQL queries or refactoring React components, I am actively mentoring junior peers as an Undergraduate Teaching Assistant, competing in national hackathons, or contributing to open-source developer tooling.
+          </p>
+<div class="pt-4 flex flex-wrap items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> Fast Learner
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> Systems Thinker
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> Open-Source Enthusiast
+            </span>
+</div>
+</div>
+<!-- About Right: 3 Frosted Metric Cards -->
+<div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+<!-- Metric 1 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass flex items-center gap-4 hover:-translate-y-1 transition duration-200 border border-white">
+<div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-xl">
+              💻
+            </div>
+<div>
+<p class="text-2xl font-extrabold text-slate-900">12+</p>
+<p class="text-xs text-slate-500 font-medium">Shipped Applications</p>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass flex items-center gap-4 hover:-translate-y-1 transition duration-200 border border-white">
+<div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xl">
+              ⚡
+            </div>
+<div>
+<p class="text-2xl font-extrabold text-slate-900">15+</p>
+<p class="text-xs text-slate-500 font-medium">Core Tech &amp; Frameworks</p>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass flex items-center gap-4 hover:-translate-y-1 transition duration-200 border border-white">
+<div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xl">
+              🏆
+            </div>
+<div>
+<p class="text-2xl font-extrabold text-slate-900">5+</p>
+<p class="text-xs text-slate-500 font-medium">Hackathons &amp; Academic Honors</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AboutSection -->
+<!-- BEGIN: SkillsSection -->
+<section class="space-y-8" id="skills">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">WHAT I WORK WITH</p>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Technical Stack &amp; Tooling
+          </h2>
+</div>
+<p class="text-xs text-slate-500 max-w-xs font-medium">
+          Continuously learning, experimenting, and integrating the right tools for scalable software.
+        </p>
+</div>
+<!-- Skills Grid (4 Category Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Category 1: Languages -->
+<div class="glass-panel p-6 rounded-3xl shadow-glass border border-white flex flex-col justify-between hover:shadow-glass-lg hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-10 h-10 rounded-2xl bg-brand-100/60 text-brand-600 flex items-center justify-center mb-4 font-bold text-sm">
+              &lt;/&gt;
+            </div>
+<h3 class="font-bold text-slate-900 text-lg mb-2">Languages</h3>
+<p class="text-xs text-slate-500 mb-5 leading-relaxed">Solid foundational command of object-oriented, functional, and typed paradigms.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">TypeScript</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Python</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Java</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">C++</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">SQL</span>
+</div>
+</div>
+<!-- Category 2: Frontend & UI -->
+<div class="glass-panel p-6 rounded-3xl shadow-glass border border-white flex flex-col justify-between hover:shadow-glass-lg hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-10 h-10 rounded-2xl bg-sky-100/60 text-sky-600 flex items-center justify-center mb-4 font-bold text-sm">
+              🎨
+            </div>
+<h3 class="font-bold text-slate-900 text-lg mb-2">Frontend &amp; UI</h3>
+<p class="text-xs text-slate-500 mb-5 leading-relaxed">Crafting responsive, accessible, and delight-driven web interfaces.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">React</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Next.js 14</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Tailwind CSS</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">HTML5/CSS3</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Figma</span>
+</div>
+</div>
+<!-- Category 3: Backend & Cloud -->
+<div class="glass-panel p-6 rounded-3xl shadow-glass border border-white flex flex-col justify-between hover:shadow-glass-lg hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-10 h-10 rounded-2xl bg-indigo-100/60 text-indigo-600 flex items-center justify-center mb-4 font-bold text-sm">
+              ☁️
+            </div>
+<h3 class="font-bold text-slate-900 text-lg mb-2">Backend &amp; Cloud</h3>
+<p class="text-xs text-slate-500 mb-5 leading-relaxed">Designing RESTful and real-time APIs with automated containerized workflows.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Node.js</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">FastAPI</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Express</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Docker</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">AWS (S3/EC2)</span>
+</div>
+</div>
+<!-- Category 4: Databases & Tools -->
+<div class="glass-panel p-6 rounded-3xl shadow-glass border border-white flex flex-col justify-between hover:shadow-glass-lg hover:-translate-y-1 transition-all duration-300">
+<div>
+<div class="w-10 h-10 rounded-2xl bg-purple-100/60 text-purple-600 flex items-center justify-center mb-4 font-bold text-sm">
+              🛠️
+            </div>
+<h3 class="font-bold text-slate-900 text-lg mb-2">Data &amp; DevOps</h3>
+<p class="text-xs text-slate-500 mb-5 leading-relaxed">Managing relational databases, distributed caches, and version control hygiene.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">PostgreSQL</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">MongoDB</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Redis</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Git / GitHub</span>
+<span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/90 border border-slate-200/60 text-slate-800">Linux / Bash</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SkillsSection -->
+<!-- BEGIN: ProjectsSection -->
+<section class="space-y-8" id="projects">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">FEATURED PROJECTS</p>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Things I've Built
+          </h2>
+</div>
+<a class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 glass-chip px-4 py-2 rounded-full shadow-sm hover:shadow transition" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span>View All on GitHub</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+<!-- Projects Grid (3 Featured Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Project 1: Algoverse -->
+<div class="glass-panel rounded-3xl p-5 shadow-glass border border-white flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300">
+<div>
+<!-- Visual Mockup Container -->
+<div class="w-full aspect-[16/10] rounded-2xl bg-gradient-to-tr from-slate-900 via-indigo-950 to-purple-900 p-4 relative overflow-hidden flex flex-col justify-between shadow-inner">
+<div class="flex items-center justify-between text-[11px] text-white/70 font-mono">
+<span class="inline-flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span> sorting_visualizer.tsx
+                </span>
+<span class="bg-white/10 px-2 py-0.5 rounded text-[10px]">O(N log N)</span>
+</div>
+<!-- Abstract Visual Elements (Sorting Bars representation) -->
+<div class="flex items-end justify-between gap-1.5 h-20 px-2 pt-4">
+<div class="w-full bg-brand-400/80 rounded-t h-[35%]"></div>
+<div class="w-full bg-brand-300 rounded-t h-[65%]"></div>
+<div class="w-full bg-sky-300 rounded-t h-[90%]"></div>
+<div class="w-full bg-brand-500 rounded-t h-[45%]"></div>
+<div class="w-full bg-emerald-400 rounded-t h-[100%]"></div>
+<div class="w-full bg-indigo-300 rounded-t h-[75%]"></div>
+<div class="w-full bg-brand-300 rounded-t h-[55%]"></div>
+</div>
+<div class="text-[10px] text-white/50 text-right font-mono">60 FPS Simulation</div>
+</div>
+<!-- Project Details -->
+<div class="mt-5 space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">Algoverse</h3>
+<span class="text-xs text-brand-600 font-semibold bg-brand-50 px-2 py-0.5 rounded-full">Interactive App</span>
+</div>
+<p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                An interactive algorithm and data structure visualization playground with step-by-step memory frame execution and time complexity benchmarks.
+              </p>
+</div>
+</div>
+<!-- Tags & Links Footer -->
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+<div class="flex flex-wrap gap-1.5">
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">React</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">TypeScript</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Canvas API</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="p-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-white transition" href="#projects" title="View Source">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<a class="p-2 rounded-full text-slate-500 hover:text-brand-600 hover:bg-white transition" href="#projects" title="Launch Demo">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 2: PulseDesk -->
+<div class="glass-panel rounded-3xl p-5 shadow-glass border border-white flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300">
+<div>
+<!-- Visual Mockup Container -->
+<div class="w-full aspect-[16/10] rounded-2xl bg-gradient-to-tr from-slate-900 via-sky-950 to-indigo-900 p-4 relative overflow-hidden flex flex-col justify-between shadow-inner">
+<div class="flex items-center justify-between text-[11px] text-white/70">
+<span class="inline-flex items-center gap-1.5 font-mono">
+<span class="w-2 h-2 rounded-full bg-sky-400"></span> ws://pulsedesk/sync
+                </span>
+<span class="bg-sky-500/20 text-sky-200 text-[10px] px-2 py-0.5 rounded font-mono">&lt; 15ms Latency</span>
+</div>
+<!-- Abstract Collaborative Cursors Mockup -->
+<div class="relative h-20 w-full flex items-center justify-center">
+<div class="absolute left-6 top-2 glass-chip px-2 py-1 rounded-md text-[10px] text-slate-800 shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> Alex C.
+                </div>
+<div class="absolute right-8 bottom-3 glass-chip px-2 py-1 rounded-md text-[10px] text-slate-800 shadow-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Sarah K.
+                </div>
+<div class="w-3/4 h-8 rounded-lg bg-white/10 border border-white/20 backdrop-blur-sm flex items-center px-3 text-[11px] text-white/80 font-mono">
+                  Markdown block synchronized
+                </div>
+</div>
+<div class="text-[10px] text-white/50 text-right font-mono">Redis Pub/Sub Connected</div>
+</div>
+<!-- Project Details -->
+<div class="mt-5 space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">PulseDesk</h3>
+<span class="text-xs text-sky-600 font-semibold bg-sky-50 px-2 py-0.5 rounded-full">Realtime Web</span>
+</div>
+<p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                Lightweight collaborative note-taking and canvas workspace supporting multiplayer editing with WebSockets and CRDT consistency resolution.
+              </p>
+</div>
+</div>
+<!-- Tags & Links Footer -->
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+<div class="flex flex-wrap gap-1.5">
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Next.js</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Redis</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Socket.io</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="p-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-white transition" href="#projects" title="View Source">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<a class="p-2 rounded-full text-slate-500 hover:text-brand-600 hover:bg-white transition" href="#projects" title="Launch Demo">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 3: DevMetrics -->
+<div class="glass-panel rounded-3xl p-5 shadow-glass border border-white flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-300">
+<div>
+<!-- Visual Mockup Container -->
+<div class="w-full aspect-[16/10] rounded-2xl bg-gradient-to-tr from-slate-950 via-slate-900 to-emerald-950 p-4 relative overflow-hidden flex flex-col justify-between shadow-inner">
+<div class="flex items-center justify-between text-[11px] text-white/70 font-mono">
+<span class="inline-flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-purple-400"></span> docker-compose.prod
+                </span>
+<span class="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded">Healthy (99.8%)</span>
+</div>
+<!-- Abstract Chart / Metric Gauges -->
+<div class="grid grid-cols-2 gap-2 my-auto">
+<div class="bg-white/10 p-2 rounded-lg border border-white/10 text-center">
+<p class="text-[9px] text-slate-300 uppercase">Avg API Latency</p>
+<p class="text-sm font-bold text-white font-mono">42ms</p>
+</div>
+<div class="bg-white/10 p-2 rounded-lg border border-white/10 text-center">
+<p class="text-[9px] text-slate-300 uppercase">Container Mem</p>
+<p class="text-sm font-bold text-emerald-300 font-mono">214 MB</p>
+</div>
+</div>
+<div class="text-[10px] text-white/50 text-right font-mono">FastAPI + Prometheus</div>
+</div>
+<!-- Project Details -->
+<div class="mt-5 space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">DevMetrics</h3>
+<span class="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">DevOps &amp; Cloud</span>
+</div>
+<p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                Server telemetry and continuous integration analytics engine aggregating Git commits, container health, and endpoint performance metrics.
+              </p>
+</div>
+</div>
+<!-- Tags & Links Footer -->
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+<div class="flex flex-wrap gap-1.5">
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">FastAPI</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">Docker</span>
+<span class="text-[11px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">PostgreSQL</span>
+</div>
+<div class="flex items-center gap-2">
+<a class="p-2 rounded-full text-slate-500 hover:text-slate-900 hover:bg-white transition" href="#projects" title="View Source">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<a class="p-2 rounded-full text-slate-500 hover:text-brand-600 hover:bg-white transition" href="#projects" title="Launch Demo">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ProjectsSection -->
+<!-- BEGIN: EducationAndExperienceSection -->
+<section class="space-y-8" id="education">
+<!-- Section Header -->
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">BACKGROUND &amp; TIMELINE</p>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Education &amp; Experience
+        </h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left: Education Journey -->
+<div class="glass-panel p-8 rounded-3xl shadow-glass border border-white space-y-6">
+<div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+<div class="w-9 h-9 rounded-xl bg-brand-100/70 text-brand-600 flex items-center justify-center font-bold">
+              🎓
+            </div>
+<div>
+<h3 class="font-bold text-slate-900 text-lg">Academic Journey</h3>
+<p class="text-xs text-slate-500">Degree &amp; Relevant Coursework</p>
+</div>
+</div>
+<div class="space-y-5">
+<div class="relative pl-6 border-l-2 border-brand-200 space-y-1">
+<span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-brand-500 border-2 border-white"></span>
+<span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">2022 — 2026 (Expected)</span>
+<h4 class="font-bold text-slate-900 text-base">Bachelor of Science in Computer Science</h4>
+<p class="text-slate-600 text-sm font-medium">State University of Technology • Honors College</p>
+<p class="text-slate-500 text-xs pt-1">
+<span class="font-semibold text-slate-700">Cumulative GPA:</span> 3.92 / 4.00 (Dean's List for 4 Consecutive Semesters)
+              </p>
+</div>
+<!-- Key Coursework Pills -->
+<div class="pt-2">
+<p class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">Key Coursework Completed</p>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Data Structures &amp; Algorithms</span>
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Operating Systems</span>
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Database Systems</span>
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Computer Networks</span>
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Software Engineering Principles</span>
+<span class="px-3 py-1 bg-white/90 rounded-full border border-slate-200/70 text-slate-700">Machine Learning Intro</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Practical Experience -->
+<div class="glass-panel p-8 rounded-3xl shadow-glass border border-white space-y-6" id="experience">
+<div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+<div class="w-9 h-9 rounded-xl bg-sky-100/70 text-sky-600 flex items-center justify-center font-bold">
+              💼
+            </div>
+<div>
+<h3 class="font-bold text-slate-900 text-lg">Where I've Gained Experience</h3>
+<p class="text-xs text-slate-500">Internships &amp; Campus Leadership</p>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Experience Item 1 -->
+<div class="relative pl-6 border-l-2 border-brand-200 space-y-1">
+<span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-brand-500 border-2 border-white"></span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-brand-600">Summer 2024</span>
+<span class="text-[11px] font-medium bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">Internship</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm sm:text-base">Software Engineering Intern</h4>
+<p class="text-slate-600 text-xs sm:text-sm font-medium">CloudScale Solutions Inc.</p>
+<p class="text-slate-500 text-xs leading-relaxed pt-1">
+                Refactored microservice telemetry ingestion with FastAPI and Redis, cutting p99 data processing latency by 28%. Wrote automated unit and integration tests.
+              </p>
+</div>
+<!-- Experience Item 2 -->
+<div class="relative pl-6 border-l-2 border-slate-200 space-y-1">
+<span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-slate-300 border-2 border-white"></span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500">Jan 2024 — Present</span>
+<span class="text-[11px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full">Academic</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm sm:text-base">Undergraduate Teaching Assistant</h4>
+<p class="text-slate-600 text-xs sm:text-sm font-medium">Computer Science Dept. — CS201 (Data Structures)</p>
+<p class="text-slate-500 text-xs leading-relaxed pt-1">
+                Hold bi-weekly office hours for 85+ students, assist with Java debugging, and grade assignments covering binary trees, graphs, and dynamic programming.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: EducationAndExperienceSection -->
+<!-- BEGIN: AchievementsSection -->
+<section class="space-y-6" id="achievements">
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">HONORS &amp; RECOGNITION</p>
+<h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">
+          Milestones &amp; Certifications
+        </h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+<!-- Achievement 1 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass border border-white hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center font-bold mb-3">
+            🥇
+          </div>
+<h3 class="font-bold text-slate-900 text-sm">1st Place — HackState 2023</h3>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">Built an AI accessibility audio-reader for visually impaired students in 36 hours.</p>
+</div>
+<!-- Achievement 2 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass border border-white hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center font-bold mb-3">
+            ☁️
+          </div>
+<h3 class="font-bold text-slate-900 text-sm">AWS Certified Cloud Practitioner</h3>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">Validated fundamental understanding of AWS architecture, security, and cloud economics.</p>
+</div>
+<!-- Achievement 3 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass border border-white hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold mb-3">
+            📜
+          </div>
+<h3 class="font-bold text-slate-900 text-sm">President's Academic Honors</h3>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">Awarded to top 3% percentile students in the College of Engineering for sustained high GPA.</p>
+</div>
+<!-- Achievement 4 -->
+<div class="glass-panel p-5 rounded-2xl shadow-glass border border-white hover:-translate-y-1 transition duration-200">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold mb-3">
+            🌱
+          </div>
+<h3 class="font-bold text-slate-900 text-sm">Open Source Contributor</h3>
+<p class="text-xs text-slate-500 mt-1 leading-relaxed">Merged pull requests in widely used developer tooling repositories including docs and bug fixes.</p>
+</div>
+</div>
+</section>
+<!-- END: AchievementsSection -->
+<!-- BEGIN: ContactSection -->
+<section class="space-y-6" id="contact">
+<!-- Big Frosted Contact Card Container -->
+<div class="glass-panel rounded-3xl p-8 sm:p-12 shadow-glass-lg border border-white relative overflow-hidden">
+<!-- Ambient internal tint -->
+<div class="absolute -right-24 -bottom-24 w-80 h-80 bg-brand-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute -left-20 -top-20 w-80 h-80 bg-sky-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Contact Left: Messaging & Direct Details -->
+<div class="lg:col-span-5 space-y-6">
+<div>
+<p class="text-xs uppercase tracking-wider text-brand-600 font-bold mb-2">LET'S CONNECT</p>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Have an opportunity or project in mind?
+              </h2>
+</div>
+<p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+              I am actively seeking Software Engineering internships and co-op opportunities for Summer &amp; Fall 2025. Whether you have an open role, an idea, or just want to talk tech, my inbox is open!
+            </p>
+<!-- Quick Details List -->
+<div class="space-y-3 pt-2">
+<a class="flex items-center gap-3 text-slate-700 hover:text-brand-600 transition group text-sm" href="mailto:alex.chen.placeholder@example.com">
+<div class="w-9 h-9 rounded-xl bg-white shadow-sm border border-slate-200/60 flex items-center justify-center text-slate-500 group-hover:text-brand-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="font-medium">alex.chen.cs@example.com</span>
+</a>
+<div class="flex items-center gap-3 text-slate-700 text-sm">
+<div class="w-9 h-9 rounded-xl bg-white shadow-sm border border-slate-200/60 flex items-center justify-center text-slate-500">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="font-medium">San Francisco Bay Area / Remote</span>
+</div>
+</div>
+<!-- Social Links Row -->
+<div class="pt-4 flex items-center gap-3">
+<a aria-label="GitHub Profile" class="p-2.5 rounded-full bg-white shadow-sm border border-slate-200/70 text-slate-700 hover:text-brand-600 hover:scale-105 transition" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+</a>
+<a aria-label="LinkedIn Profile" class="p-2.5 rounded-full bg-white shadow-sm border border-slate-200/70 text-slate-700 hover:text-brand-600 hover:scale-105 transition" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+<a aria-label="Twitter Profile" class="p-2.5 rounded-full bg-white shadow-sm border border-slate-200/70 text-slate-700 hover:text-brand-600 hover:scale-105 transition" href="https://x.com" rel="noopener noreferrer" target="_blank">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Contact Right: Form -->
+<div class="lg:col-span-7 bg-white/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white shadow-sm">
+<form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you for reaching out! This demo form is ready to be linked to your email API.');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-xs font-semibold text-slate-700" for="contact-name">Your Name</label>
+<input class="w-full text-sm px-4 py-3 rounded-xl bg-white/90 border border-slate-200/80 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition placeholder:text-slate-400" id="contact-name" placeholder="Jane Doe" required="" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold text-slate-700" for="contact-email">Your Email</label>
+<input class="w-full text-sm px-4 py-3 rounded-xl bg-white/90 border border-slate-200/80 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition placeholder:text-slate-400" id="contact-email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold text-slate-700" for="contact-subject">Topic / Inquiry Type</label>
+<select class="w-full text-sm px-4 py-3 rounded-xl bg-white/90 border border-slate-200/80 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition text-slate-700" id="contact-subject">
+<option>Software Engineering Internship</option>
+<option>Collaborative Project / Hackathon</option>
+<option>General Tech Chat &amp; Networking</option>
+<option>Other Opportunity</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold text-slate-700" for="contact-message">Your Message</label>
+<textarea class="w-full text-sm px-4 py-3 rounded-xl bg-white/90 border border-slate-200/80 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition placeholder:text-slate-400 resize-none" id="contact-message" placeholder="Hi Alex, I came across your portfolio and wanted to discuss..." required="" rows="4"></textarea>
+</div>
+<button class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm py-3.5 px-6 rounded-xl shadow-pill hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group" type="submit">
+<span>Send Message</span>
+<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ContactSection -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="border-t border-slate-200/70 bg-white/40 backdrop-blur-md py-8 px-4 text-center text-xs text-slate-500">
+<div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 font-medium">
+<span class="w-2 h-2 rounded-full bg-brand-500"></span>
+<span>© 2025 Alex Chen. Built with Tailwind CSS &amp; Passion.</span>
+</div>
+<p class="text-slate-400">
+        Designed with clarity, softness, and curiosity.
+      </p>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>
